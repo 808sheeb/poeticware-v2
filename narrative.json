@@ -1,0 +1,21 @@
+{
+  "words": {
+    "yesno" : ["yes", "no"],
+    "who": ["the void", "her", "them", "him", "Agent 492", "Da Boss"],
+    "op": ["DEADHAWK", "LAST CHANCE", "ALPHA", "2953783837492"],
+    "pass": ["1234", "0000", "1998", "2000", "6969"]
+  },
+
+
+
+  "stages": [
+    "LOCATION: UNDEFINED</br >STATUS: ALERT</br >AGENT 934: MIA",
+    "Hello!</br >are you there?</br ><br />{yesno}",
+    "no? well then<br />who are you?</br ></br >{who}",
+    "Finally! We've been waiting<br />is OPERATION: {op} a go?</br ></br >{yesno}",
+    "WHO? </br > How did you get this number??? </br > We've been comprised.",
+    "Roger, Agent 324</br > Please input your passcode.</br ></br > {pass}",
+    "burn it all--</br >abort OPERATION {op}</br >TRANSMISSION END.",
+    "Nuclear warheads- aimed & ready</br >Launch on your mark."
+  ]
+}
