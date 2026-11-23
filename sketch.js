@@ -34,11 +34,12 @@ async function setup() {
   noCanvas(); // this gets rid of the little bit of extra canvas that html saves for p5
   narrative = await loadJSON("narrative.json");
   // to debug specific stages input index number here
-  // when ready it should be loadStage(stageIndex)
+  // when ready to ship, it should be loadStage(stageIndex)
   loadStage(stageIndex);
 }
 
-// parses each character of the "stage" string, finds the curly bracket, returns the contents of the curly bracket & that words position in the string and also returns the "cleaned" string with the blanks (content of curly braces) removed
+// parses each character of the "stage" string, finds the curly bracket, returns the contents of the curly bracket 
+// & that words position in the string and also returns the "cleaned" string with the blanks (content of curly braces) removed
 function extractBraces(str) {
   let read = "";
   const contents = [];
@@ -132,7 +133,7 @@ function rerollBlank(text, blanks, idx) {
   return { text: newText, blanks: newBlanks };
 }
 
-// turns {text, blanks} into HTML, wrapping each blank in a clickable span
+// turns {text, blanks} into HTML, wrapping each blank in a clickable "button" (span html element)
 // locked blanks get an extra ".locked" class for styling (e.g. cursor: default)
 function renderToHTML(text, blanks) {
   let html = "";
@@ -176,7 +177,7 @@ function loadStage(index) {
   renderStage();
 }
 
-// one listener handles every blank
+// one listener handles every blank, listening for events like mouseclicks
 document.getElementById("g").addEventListener("click", (e) => {
   if (!e.target.classList.contains("blank")) return;
   const idx = parseInt(e.target.dataset.idx, 10);
@@ -208,7 +209,7 @@ document.getElementById("next").addEventListener("click", () => {
     currentBlanks
   );
 
-  // debug to see where you are at
+  // debug, uncomment this to see where you are at in the console
   //console.log("Stages:" + narrative.stages.length);
   //console.log("Last Index: " + stageIndex);
   //console.log("Current Index: " + nextIndex);
@@ -232,6 +233,9 @@ document.getElementById("next").addEventListener("click", () => {
   //console.log(previousBlanks)
 });
 
+
+
+// GAME STATE MANAGER HERE
 // Any stage without one falls through to the default: currentIndex + 1.
 //
 // Each rule is a function (blanks, locked) => nextStageIndex
@@ -315,10 +319,14 @@ function gameStateManager(index, history, blanks) {
   }
 }
 
+// REFRESHES THE WEBPAGE AFTER THE RESET BUTTON IS HIT
+
 function refresh() {
   location.reload();
 }
 
+
+// COMPILES THE FINAL POEM AND SENDS THAT TO THE HTML CODE
 function finalPoem(session) {
   let s = "";
   session.forEach((stage, index) => {
